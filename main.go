@@ -93,7 +93,7 @@ func main() {
 		panic(err)
 	}
 
-	updates := bot.ListenForWebhook("/")
+	updates := bot.ListenForWebhook("/" + bot.Token)
 
 	http.HandleFunc("/", MainHandler)
 
