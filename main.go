@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
@@ -64,15 +63,18 @@ func getTable(url string) (*XMLTable, error) {
 func main() {
 	configuration := new(Configuration)
 	//filename is the path to the json config file
-	file, err := os.Open("config.json")
-	if err != nil {
-		panic(err)
-	}
-	decoder := json.NewDecoder(file)
-	err = decoder.Decode(&configuration)
-	if err != nil {
-		panic(err)
-	}
+	// file, err := os.Open("config.json")
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// decoder := json.NewDecoder(file)
+	// err = decoder.Decode(&configuration)
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	configuration.BotToken = os.Getenv("BotToken")
+	configuration.WebhookURL = os.Getenv("WebhookURL")
 
 	bot, err := tgbotapi.NewBotAPI(configuration.BotToken)
 	if err != nil {
