@@ -22,6 +22,10 @@ var groups = map[string]string{
 	"ПМ-161":  "http://volsu.ru/activities/education/eduprogs/rating.php?plan=000000816&list=32&level=03&profile=&semestr=4",
 }
 
+func MainHandler(resp http.ResponseWriter, _ *http.Request) {
+	resp.Write([]byte("Hi there! I'm MF_telegram_bot!"))
+}
+
 type XMLTable struct {
 	Rows []struct {
 		Cols []struct {
@@ -91,8 +95,10 @@ func main() {
 
 	updates := bot.ListenForWebhook("/")
 
-	go http.ListenAndServe(":8080", nil)
-	fmt.Println("start listen :8080")
+	http.HandleFunc("/", MainHandler)
+
+	go http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	fmt.Println("start listen :" + os.Getenv("PORT"))
 
 	// получаем все обновления из канала updates
 	for update := range updates {
