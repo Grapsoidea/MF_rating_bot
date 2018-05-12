@@ -133,7 +133,11 @@ func main() {
 					for i = 1; i < len(table.Rows[0].Cols); i++ {
 
 						re = regexp.MustCompile(`<div>.*</div>`)
-						dis := re.FindString(table.Rows[0].Cols[i].Cell)
+						disA := re.FindAllString(table.Rows[0].Cols[i].Cell, -1)
+						dis := disA[0][5 : len(disA[0])-6]
+						if disA[2][5:len(disA[2])-6] != "" {
+							dis += " (" + disA[2][5:len(disA[2])-6] + ")"
+						}
 						dis = dis[5 : len(dis)-6]
 						re = regexp.MustCompile(`\d+`)
 						rat := re.FindString(table.Rows[n].Cols[i].Cell)
