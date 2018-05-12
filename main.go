@@ -134,18 +134,16 @@ func main() {
 
 						re := regexp.MustCompile(`<div>.*</div>`)
 						disA := re.FindAllString(table.Rows[0].Cols[i].Cell, -1)
+						dis := ""
 						if len(disA) > 0 {
-							dis := disA[0][5 : len(disA[0])-6]
+							dis = disA[0][5 : len(disA[0])-6]
 							if len(disA) == 3 {
 								if disA[2][5:len(disA[2])-6] != "" {
 									dis += " (" + disA[2][5:len(disA[2])-6] + ")"
 								}
 							}
 						} else {
-							bot.Send(tgbotapi.NewMessage(
-								update.Message.Chat.ID,
-								"Что-то с названием предмета не так...(",
-							))
+							dis = "Что-то с названием предмета не так...("
 						}
 
 						re = regexp.MustCompile(`\d+`)
