@@ -1,4 +1,29 @@
 {
-	"МОС-151": "http://volsu.ru/activities/education/eduprogs/rating.php?plan=000000512&list=62&level=03&profile=0000000002&semestr=6",
-	"ПМ-161":  "http://volsu.ru/activities/education/eduprogs/rating.php?plan=000000816&list=32&level=03&profile=&semestr=4"
+	"ИВТ-171" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000912&list=13&level=03&profile=",
+	"ИВТ-161" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000843&list=13&level=03&profile=",
+	"ИВТ-151" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000521&list=13&level=03&profile=",
+
+	"ИСТ-171" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000915&list=15&level=03&profile=",
+	"ИСТ-161" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000847&list=15&level=03&profile=",
+	"ИСТ-151" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000523&list=15&level=03&profile=",
+
+	"МКН-171" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000908&list=61&level=03&profile=0000000001",
+	"МКН-161" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000820&list=61&level=03&profile=",
+	"МКН-151" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000511&list=61&level=03&profile=0000000001",
+
+	"МОС-171" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000911&list=62&level=03&profile=0000000002",
+	"МОС-161" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000826&list=62&level=03&profile=0000000002",
+	"МОС-151" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000512&list=62&level=03&profile=0000000002",
+
+	"ПИ-171" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000913&list=66&level=03&profile=",
+	"ПИ-161" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000855&list=66&level=03&profile=0000000141",
+	"ПИ-151" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000522&list=66&level=03&profile=0000000008",
+
+	"ПМ-171" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000907&list=32&level=03&profile=",
+	"ПМ-161" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000816&list=32&level=03&profile=",
+	"ПМ-151" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000510&list=32&level=03&profile=",
+
+	"ПРИ-171" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000916&list=33&level=03&profile=0000000009",
+	"ПРИ-161" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000848&list=33&level=03&profile=0000000009",
+	"ПРИ-151" : "http://www.volsu.ru/activities/education/eduprogs/rating.php?plan=000000524&list=33&level=03&profile=0000000009"
 }
