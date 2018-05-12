@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"encoding/xml"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -39,13 +40,25 @@ func getTable(url string) (*XMLTable, error) {
 	}
 
 	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
 
 	data := string(body)
 
 	i := strings.Index(data, `<table class="progs">`)
+	if i == -1 {
+		err = errors.New("Bad strings.Index")
+		return nil, err
+	}
 	data = data[i:]
+
 	i = strings.Index(data, `</table>`)
+	if i == -1 {
+		err = errors.New("Bad strings.Index")
+		return nil, err
+	}
 	data = data[:i+8]
 
 	table := new(XMLTable)
