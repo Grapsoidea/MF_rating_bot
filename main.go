@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
@@ -17,10 +18,7 @@ type Configuration struct {
 	WebhookURL string
 }
 
-var groups = map[string]string{
-	"МОС-151": "http://volsu.ru/activities/education/eduprogs/rating.php?plan=000000512&list=62&level=03&profile=0000000002&semestr=6",
-	"ПМ-161":  "http://volsu.ru/activities/education/eduprogs/rating.php?plan=000000816&list=32&level=03&profile=&semestr=4",
-}
+var groups map[string]string
 
 func MainHandler(resp http.ResponseWriter, _ *http.Request) {
 	resp.Write([]byte("Hi there! I'm MF_telegram_bot!"))
@@ -66,16 +64,18 @@ func getTable(url string) (*XMLTable, error) {
 
 func main() {
 	configuration := new(Configuration)
-	//filename is the path to the json config file
-	// file, err := os.Open("config.json")
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// decoder := json.NewDecoder(file)
-	// err = decoder.Decode(&configuration)
-	// if err != nil {
-	// 	panic(err)
-	// }
+
+	file, err := os.Open("groups.json")
+	if err != nil {
+		panic(err)
+	}
+
+	decoder := json.NewDecoder(file)
+	err = decoder.Decode(&groups)
+
+	if err != nil {
+		panic(err)
+	}
 
 	configuration.BotToken = os.Getenv("BotToken")
 	configuration.WebhookURL = os.Getenv("WebhookURL")
