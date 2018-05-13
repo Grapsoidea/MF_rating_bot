@@ -115,10 +115,17 @@ func main() {
 
 	// получаем все обновления из канала updates
 	for update := range updates {
+		var uMessage string
+		if update.CallbackQuery != nil {
+			uMessage = update.CallbackQuery.Data
+		} else {
+			uMessage = update.Message.Text
+		}
+
 		re := regexp.MustCompile(`[А-Я][А-Я]+-\d\d\d`)
-		group := re.FindString(strings.ToUpper(update.Message.Text))
+		group := re.FindString(strings.ToUpper(uMessage))
 		re = regexp.MustCompile(`\d\d\d\d\d\d`)
-		recBook := re.FindString(update.Message.Text)
+		recBook := re.FindString(uMessage)
 
 		if group != "" && recBook != "" {
 			if url, ok := groups[group]; ok {
