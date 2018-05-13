@@ -164,7 +164,7 @@ func main() {
 				} else {
 					bot.Send(tgbotapi.NewMessage(
 						uMessage,
-						recBook+" "+strings.ToLower(semestr)+":\n",
+						"Зачетная книжка - "recBook+", "+strings.ToLower(semestr)+":\n",
 					))
 					for i = 1; i < len(table.Rows[0].Cols); i++ {
 
@@ -209,7 +209,7 @@ func main() {
 		} else {
 			bot.Send(tgbotapi.NewMessage(
 				uMessage,
-				`Введите свою группу и номер зач. книжки, например "МОС-123 123456"`,
+				`Введите свою группу и номер зач. книжки, например "МОС-123 123456", можете дописать "саместр=n", если хотите посмотреть баллы n-ого семестра, например, "МОС-123 123456 семестр=1"`,
 			))
 		}
 
