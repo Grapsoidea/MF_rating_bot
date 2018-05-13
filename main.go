@@ -129,10 +129,19 @@ func main() {
 		group := re.FindString(strings.ToUpper(text))
 		re = regexp.MustCompile(`\d\d\d\d\d\d`)
 		recBook := re.FindString(text)
+		re = regexp.MustCompile(`СЕМЕСТР=1|2|3|4|5|6|7|8`)
+		semestr := re.FindString(strings.ToUpper(text))
 
 		if group != "" && recBook != "" {
 			if url, ok := groups[group]; ok {
-				table, err := getTable(url)
+				newUrl := url
+				if semestr != "" {
+					newUrl += "&semestr=" + semestr[len(semestr)-1:]
+				} else {
+					semestr = "СЕМЕСТР ТЕКУЩИЙ"
+				}
+
+				table, err := getTable(newUrl)
 				if err != nil {
 					bot.Send(tgbotapi.NewMessage(
 						uMessage,
@@ -153,6 +162,10 @@ func main() {
 						"Извините, зачетка: "+recBook+" не найдена",
 					))
 				} else {
+					bot.Send(tgbotapi.NewMessage(
+						uMessage,
+						recBook+" "+strings.ToLower(semestr)+":\n",
+					))
 					for i = 1; i < len(table.Rows[0].Cols); i++ {
 
 						re := regexp.MustCompile(`<div>.*</div>`)
