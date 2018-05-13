@@ -129,7 +129,7 @@ func main() {
 		group := re.FindString(strings.ToUpper(text))
 		re = regexp.MustCompile(`\d\d\d\d\d\d`)
 		recBook := re.FindString(text)
-		re = regexp.MustCompile(`СЕМЕСТР=1|2|3|4|5|6|7|8`)
+		re = regexp.MustCompile(`СЕМЕСТР=[1-8]`)
 		semestr := re.FindString(strings.ToUpper(text))
 
 		if group != "" && recBook != "" {
