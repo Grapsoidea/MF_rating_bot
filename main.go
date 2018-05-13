@@ -191,7 +191,7 @@ func main() {
 						))
 					}
 					msg := tgbotapi.NewMessage(uMessage, "Нажмите, чтобы обновить этот список")
-					btn := tgbotapi.NewInlineKeyboardButtonData("Обновить", group+" "+recBook)
+					btn := tgbotapi.NewInlineKeyboardButtonData("Обновить", group+" "+recBook+" "+semestr)
 					var row []tgbotapi.InlineKeyboardButton
 					row = append(row, btn)
 					keyboard := tgbotapi.InlineKeyboardMarkup{}
@@ -209,7 +209,7 @@ func main() {
 		} else {
 			bot.Send(tgbotapi.NewMessage(
 				uMessage,
-				`Введите свою группу и номер зач. книжки, например "МОС-123 123456", можете дописать "саместр=n", если хотите посмотреть баллы n-ого семестра, например, "МОС-123 123456 семестр=1"`,
+				`Введите свою группу и номер зач. книжки, например "МОС-123 123456" (чтобы узнать баллы за n-ый семестр, допишите "семестр=n"`,
 			))
 		}
 
