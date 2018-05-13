@@ -115,24 +115,27 @@ func main() {
 
 	// получаем все обновления из канала updates
 	for update := range updates {
-		var uMessage string
+		var text string
+		var uMessage int64
 		if update.CallbackQuery != nil {
-			uMessage = update.CallbackQuery.Data
+			text = update.CallbackQuery.Data
+			uMessage = update.CallbackQuery.Message.Chat.ID
 		} else {
-			uMessage = update.Message.Text
+			text = update.Message.Text
+			uMessage = update.Message.Chat.ID
 		}
 
 		re := regexp.MustCompile(`[А-Я][А-Я]+-\d\d\d`)
-		group := re.FindString(strings.ToUpper(uMessage))
+		group := re.FindString(strings.ToUpper(text))
 		re = regexp.MustCompile(`\d\d\d\d\d\d`)
-		recBook := re.FindString(uMessage)
+		recBook := re.FindString(text)
 
 		if group != "" && recBook != "" {
 			if url, ok := groups[group]; ok {
 				table, err := getTable(url)
 				if err != nil {
 					bot.Send(tgbotapi.NewMessage(
-						update.Message.Chat.ID,
+						uMessage,
 						"Извините, произошла ошибка",
 					))
 				}
@@ -146,7 +149,7 @@ func main() {
 				}
 				if i == len(table.Rows) {
 					bot.Send(tgbotapi.NewMessage(
-						update.Message.Chat.ID,
+						uMessage,
 						"Извините, зачетка: "+recBook+" не найдена",
 					))
 				} else {
@@ -170,11 +173,11 @@ func main() {
 						rat := re.FindString(table.Rows[n].Cols[i].Cell)
 
 						bot.Send(tgbotapi.NewMessage(
-							update.Message.Chat.ID,
+							uMessage,
 							dis+":\n"+rat,
 						))
 					}
-					msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Нажмите, чтобы обновить этот список")
+					msg := tgbotapi.NewMessage(uMessage, "Нажмите, чтобы обновить этот список")
 					btn := tgbotapi.NewInlineKeyboardButtonData("Обновить", group+" "+recBook)
 					var row []tgbotapi.InlineKeyboardButton
 					row = append(row, btn)
@@ -186,13 +189,13 @@ func main() {
 				}
 			} else {
 				bot.Send(tgbotapi.NewMessage(
-					update.Message.Chat.ID,
+					uMessage,
 					`Извините, ваша группа не найдена: возможно она пока не доступна или вы ошиблись)`,
 				))
 			}
 		} else {
 			bot.Send(tgbotapi.NewMessage(
-				update.Message.Chat.ID,
+				uMessage,
 				`Введите свою группу и номер зач. книжки, например "МОС-123 123456"`,
 			))
 		}
