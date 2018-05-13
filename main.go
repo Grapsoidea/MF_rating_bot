@@ -175,12 +175,11 @@ func main() {
 						))
 					}
 					msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Нажмите, чтобы обновить этот список")
-					btn := tgbotapi.NewKeyboardButton(group + " " + recBook)
-
-					var row []tgbotapi.KeyboardButton
+					btn := tgbotapi.NewInlineKeyboardButtonData("Обновить", group+" "+recBook)
+					var row []tgbotapi.InlineKeyboardButton
 					row = append(row, btn)
-					keyboard := tgbotapi.NewReplyKeyboard(row)
-
+					keyboard := tgbotapi.InlineKeyboardMarkup{}
+					keyboard.InlineKeyboard = append(keyboard.InlineKeyboard, row)
 					msg.ReplyMarkup = keyboard
 					bot.Send(msg)
 
