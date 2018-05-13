@@ -164,7 +164,7 @@ func main() {
 				} else {
 					bot.Send(tgbotapi.NewMessage(
 						uMessage,
-						"Зачетная книжка - "recBook+", "+strings.ToLower(semestr)+":\n",
+						"Зачетная книжка - "+recBook+", "+strings.ToLower(semestr)+":\n",
 					))
 					for i = 1; i < len(table.Rows[0].Cols); i++ {
 
